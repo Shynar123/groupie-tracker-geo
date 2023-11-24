@@ -1,0 +1,101 @@
+{{template "base" .}}
+
+<!-- <form autocomplete="off" action="/search" method="get"> -->
+<div class="search-groupie">
+  <div class="search-input">
+    <input type="text" placeholder="Type to search..." id="search" class="search">
+    <span class="clear" onclick="SearchClearButton()"></span>
+  </div>
+  <div class="match-list" id="match-list"> </div>
+</div>
+<!-- </form> -->
+</nav>
+
+<script src="static/js/main.js" defer></script>
+
+<div style="display: none;" id="json"> {{ .Js }}</div>
+<div style="display: none;" id="creationDate">{{.CreationDate}}</div>
+<div style="display: none;" id="FirstAlbum">{{.StartEndAlbumDate}}</div>
+<div style="display: none;" id="LocationObject">{{.LocationObject}}</div>
+<div style="display: none;" id="LocationJson">{{.LocationJson}}</div>
+
+<div class="wrapper-body">
+  <div class="container-fluid text-center">
+    <div class="row content">
+      <div class="col-lg-2 sidenav">
+        <div class="item-group">
+          <p>№ of members in a group:</p>
+          <input type="checkbox" class="check" id="myCheck" value="1"> 1 Member <br>
+          <input type="checkbox" class="check" id="myCheck" value="2"> 2 Member <br>
+          <input type="checkbox" class="check" id="myCheck" value="3"> 3 Member <br>
+          <input type="checkbox" class="check" id="myCheck" value="4"> 4 Member <br>
+          <input type="checkbox" class="check" id="myCheck" value="5"> 5 Member <br>
+          <input type="checkbox" class="check" id="myCheck" value="6"> 6 Member <br>
+          <input type="checkbox" class="check" id="myCheck" value="7"> 7 Member <br>
+
+          <p>Career starting year:</p>
+          <div class="year-input">
+            <div class="field">
+              <span>Start Year</span>
+              <input type="number" class="input-min" id="min">
+            </div>
+            <div class="separator">-</div>
+            <div class="field">
+              <span>End Year</span>
+              <input type="number" class="input-max" id="max">
+            </div>
+          </div>
+          <div class="slider">
+            <div class="progress"></div>
+          </div>
+          <div class="range-input">
+            <input type="range" class="range-min" min="minYear" max="maxYear" value="minYear" step="1" id="minYear">
+            <input type="range" class="range-max" min="minYear" max="maxYear" value="maxYear" step="1" id="maxYear">
+          </div>
+          <br>
+          <p>First album date:</p>
+          <div>
+            <div class="firstAlbumDate">From: <input id="startDateId" type="date" value="startDate"></div>
+            <div class="firstAlbumDate">To: <input id="endDateId" type="date" value="endDate"></div>
+          </div>
+
+          <div class="dropdown">
+
+              <p>Locations of concerts:</p>
+
+              Countries: <br><select name="country" id="country">
+                <option value="" selected="selected" hidden disabled>Please select country</option>
+                {{range $key, $value := .LocationObject}}
+                <option onclick="SelectCountry()">{{$key}}</option>
+                {{end}}
+              </select>
+  
+              <br>
+              Cities: <br><select name="city" id="city">
+                <option value="" selected="selected" hidden disabled>Please select city</option>
+              </select>
+              <br><br>
+
+          </div>
+          
+
+          <button class="btn-button" type="button" onclick="ApplyFilterButton()">Apply</button>
+          <button class="btn-button" type="button" onclick="ClearFilterButton()">Clear</button>
+
+
+        </div>
+      </div>
+      <div class="container-group" id="showPlace"></div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">Groupie tracker visualizations <br>
+  <a class="footer-text" href='https://01.alem.school/git/szhigero'>Shynar Zhigerova</a> &
+  <a class="footer-text" href='https://01.alem.school/git/dtyuligu'>Diana Tyuligulova</a>
+</footer>
+
+</div>
+</body>
+
+</html>
